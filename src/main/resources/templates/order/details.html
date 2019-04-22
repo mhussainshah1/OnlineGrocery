@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta charset="UTF-8"/>
+    <link href="../../static/css/gtvg.css" media="all" rel="stylesheet"
+          th:href="@{/css/gtvg.css}" type="text/css"/>
+</head>
+<body th:object="${order}">
+<h1>Order details</h1>
+<div>
+    <p><b>Code:</b> <span th:text="*{id}">99</span></p>
+    <p>
+        <b>Date:</b>
+        <span th:text="*{#temporals.format(dateTime,'dd MMM yyyy')}">13 jan 2011</span>
+    </p>
+</div>
+<h2>Customer</h2>
+<div th:object="${order.customer}">
+    <p><b>Name:</b> <span th:text="*{name}">Frederic Tomato</span></p>
+    <p>
+        <b>Since:</b>
+        <span th:text="*{#temporals.format(customerSince,'dd MMM yyyy')}">1 jan 2011</span>
+    </p>
+</div>
+<h2>Products</h2>
+<table>
+    <tr>
+        <th>PRODUCT</th>
+        <th>AMOUNT</th>
+        <th>PURCHASE PRICE</th>
+    </tr>
+    <tr th:class="${row.odd}? 'odd'" th:each="ol,row : *{orderLines}">
+        <td th:text="${ol.product.name}">Strawberries</td>
+        <td class="number" th:text="${ol.amount}">3</td>
+        <td class="number" th:text="${ol.purchasePrice}">23.32</td>
+    </tr>
+</table>
+<div>
+    <b>TOTAL:</b>
+    <span th:text="*{#aggregates.sum(orderLines.![purchasePrice * amount])}">35.23</span>
+</div>
+<p>
+    <a href="list.html" th:href="@{/order/list}">Return to order list</a>
+</p>
+</body>
+</html>

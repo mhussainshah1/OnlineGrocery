@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta charset="utf-8"/>
+    <link href="../static/css/gtvg.css"
+          rel="stylesheet"
+          th:href="@{/css/gtvg.css}"
+          type="text/css"/>
+</head>
+<body>
+<img alt="logo" src="../static/images/gtvglogo.png"
+     th:alt="#{logo}" th:src="@{/images/gtvglogo.png}"
+     th:title="#{logo}"/>
+
+<p th:utext="#{home.welcome(${session.user.name})}">
+    Welcome to our grocery store, Sebastian Pepper!
+</p>
+
+<p>
+    Today is:
+    <span th:text="${#temporals.format(today,df)}"
+          th:with="df=#{date.format}">13 February 2011</span>
+</p>
+
+<p>Please select an option</p>
+<ol>
+    <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+    <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+    <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+    <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+</ol>
+
+<p>
+    Now you are looking at a
+    <span th:text="'working web\'s application'">template file</span>.
+</p>
+
+<div th:insert="footer :: copy"></div>
+
+</body>
+</html>
