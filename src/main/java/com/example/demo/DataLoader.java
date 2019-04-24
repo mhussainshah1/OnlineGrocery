@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -181,73 +183,40 @@ public class DataLoader implements CommandLineRunner {
                 LocalDateTime.of(2010, Month.JULY, 18, 22, 32),
                 cust1);
         customerOrdersRepository.save(order3);
-        customerRepository.save(cust4);
 
         OrderLine orderLine32 = new OrderLine(8, 5.99, order3, prod1);
         orderLineRepository.save(orderLine32);
 
         //ProductComment
-        ProductComment productComment = new ProductComment("I'm so sad this product is no longer available!", prod2);
-        productCommentRepository.save(productComment);
+        //another way of saving through a set into the table of database
+        Set<ProductComment> productComments = new HashSet<>();
+        productComments.add(new ProductComment("I'm so sad this product is no longer available!", prod2));
+        productComments.add(new ProductComment("When do you expect to have it back?", prod2));
 
-        productComment = new ProductComment("When do you expect to have it back?", prod2);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("Very tasty! I'd definitely buy it again!", prod13));
+        productComments.add(new ProductComment("My kids love it!", prod13));
+        productComments.add(new ProductComment("Good, my basic breakfast cereal. Though maybe a bit in the sweet side...", prod13));
+        productComments.add(new ProductComment("Not that I find it bad, but I think the vanilla flavouring is too intrusive", prod13));
+        productComments.add(new ProductComment("I agree with the excessive flavouring, but still one of my favourites!", prod13));
+        productComments.add(new ProductComment("Cheaper than at the local store!", prod13));
+        productComments.add(new ProductComment("I'm sorry to disagree, but IMO these are far too sweet", prod13));
+        productComments.add(new ProductComment("Good. Pricey though.", prod13));
 
-        productComment = new ProductComment("Very tasty! I'd definitely buy it again!", prod13);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("Made bread with this and it was great!", prod9));
+        productComments.add(new ProductComment("Note: this comes actually mixed with wheat flour", prod9));
 
-        productComment = new ProductComment("My kids love it!", prod13);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("Awesome Spanish oil. Buy it now.", prod14));
+        productComments.add(new ProductComment("Would definitely buy it again. Best one I've tasted", prod14));
+        productComments.add(new ProductComment("A bit acid for my taste, but still a very nice one.", prod14));
+        productComments.add(new ProductComment("Definitely not the average olive oil. Really good.", prod14));
 
-        productComment = new ProductComment("Good, my basic breakfast cereal. Though maybe a bit in the sweet side...", prod13);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("Great value!", prod16));
 
-        productComment = new ProductComment("Not that I find it bad, but I think the vanilla flavouring is too intrusive", prod13);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("My favourite :)", prod24));
 
-        productComment = new ProductComment("I agree with the excessive flavouring, but still one of my favourites!", prod13);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Cheaper than at the local store!", prod13);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("I'm sorry to disagree, but IMO these are far too sweet", prod13);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Good. Pricey though.", prod13);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Made bread with this and it was great!", prod9);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Note: this comes actually mixed with wheat flour", prod9);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Awesome Spanish oil. Buy it now.", prod14);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Would definitely buy it again. Best one I've tasted", prod14);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("A bit acid for my taste, but still a very nice one.", prod14);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Definitely not the average olive oil. Really good.", prod14);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Great value!", prod16);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("My favourite :)", prod24);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Too hard! I would not buy again", prod30);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Taste is OK, but I agree with previous ProductComment that bars are too hard to eat", prod30);
-        productCommentRepository.save(productComment);
-
-        productComment = new ProductComment("Would definitely NOT buy again. Simply unedible!", prod30);
-        productCommentRepository.save(productComment);
+        productComments.add(new ProductComment("Too hard! I would not buy again",prod30));
+        productComments.add(new ProductComment("Taste is OK, but I agree with previous ProductComment that bars are too hard to eat",prod30));
+        productComments.add(new ProductComment("Would definitely NOT buy again. Simply unedible!",prod30));
+        productCommentRepository.saveAll(productComments);
     }
 }
