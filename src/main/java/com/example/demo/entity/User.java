@@ -1,6 +1,19 @@
-package com.example.demo;
+package com.example.demo.entity;
 
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String firstName;
     private String lastName;
@@ -15,6 +28,14 @@ public class User {
         this.lastName = lastName;
         this.nationality = nationality;
         this.age = age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -52,4 +73,6 @@ public class User {
     public String getName() {
         return this.firstName + " " + this.lastName;
     }
+
+
 }

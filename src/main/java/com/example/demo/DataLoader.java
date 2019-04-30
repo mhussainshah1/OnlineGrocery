@@ -214,9 +214,9 @@ public class DataLoader implements CommandLineRunner {
 
         productComments.add(new ProductComment("My favourite :)", prod24));
 
-        productComments.add(new ProductComment("Too hard! I would not buy again",prod30));
-        productComments.add(new ProductComment("Taste is OK, but I agree with previous ProductComment that bars are too hard to eat",prod30));
-        productComments.add(new ProductComment("Would definitely NOT buy again. Simply unedible!",prod30));
+        productComments.add(new ProductComment("Too hard! I would not buy again", prod30));
+        productComments.add(new ProductComment("Taste is OK, but I agree with previous ProductComment that bars are too hard to eat", prod30));
+        productComments.add(new ProductComment("Would definitely NOT buy again. Simply unedible!", prod30));
         productCommentRepository.saveAll(productComments);
     }
 }

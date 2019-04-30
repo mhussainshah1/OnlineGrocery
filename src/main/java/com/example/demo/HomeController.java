@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.entity.User;
 import com.example.demo.entity.repository.CustomerOrderRepository;
 import com.example.demo.entity.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
