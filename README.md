@@ -8,10 +8,10 @@ Thymeleaf Examples: Good Thymes Virtual Grocery
  
      http://www.thymeleaf.org
      
-- Jdk 8.0
+- Jdk 17
 - javadatetime8
-- Thymeleaf 3.0
+- Thymeleaf 3.1
 - JPA (H2 and MySQL)
-- Spring Boot 2.2.0 M2
+- Spring Boot 3.0.6
 - Spring Expression Language
 
